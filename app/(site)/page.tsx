@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div>
-      Hello Postify!
+    <div className="text-green-500">
+      Main Content
     </div>
   )
 }
