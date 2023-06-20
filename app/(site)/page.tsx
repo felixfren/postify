@@ -7,7 +7,7 @@ export default function Home() {
       <Header>
         <div className="mb-2">
           <h1 className="text-white text-3xl font-semibold">
-            Welcome Back, Varye
+            Welcome Back, Felix
           </h1>
           <div className="grid grid-cols sm:grid-cols-2 xl:grid-cols-4 gap-3 mt-4"> 
             <ListItem 
@@ -32,3 +32,4 @@ export default function Home() {
     </div>
   )
 }
+
