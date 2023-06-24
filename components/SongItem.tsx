@@ -37,7 +37,7 @@ const SongItem: React.FC<SongItemProps> = ({
                     {data.artist}
                 </p>
             </div>
-            <div className="absolute bottom-18 right-5">
+            <div className="absolute bottom-20 right-5">
                 <PlayButton />
             </div>
         </div>
