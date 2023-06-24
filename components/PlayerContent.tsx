@@ -11,6 +11,7 @@ import Slider from "./Slider";
 import usePlayer from "@/hooks/usePlayer";
 import { useEffect, useState } from "react";
 import useSound from "use-sound";
+import PlayingMediaItem from "./PlayingMediaItem";
 
 interface PlayerContentProps {
     song: Song;
@@ -100,7 +101,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         <div className="grid grid-cols-2 md:grid-cols-3 h-full">
             <div className="flex w-full justify-start">
                 <div className="flex items-center gap-x-4">
-                    <MediaItem data={song} />
+                    <PlayingMediaItem data={song} />
                     <LikeButton songId={song.id} />
                 </div>
             </div>

@@ -6,7 +6,24 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        marquee: 'marquee 25s linear infinite',
+        marquee2: 'marquee2 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%) ' },
+          '50%': { transform: 'translateX(-20%) '},
+          '100%': { transform: 'translateX(0%)'},
+        },
+        marquee2: {
+          '0%': { transform: 'translateX(0%) ' },
+          '50%': { transform: 'translateX(5%) '},
+          '100%': { transform: 'translateX(0%)'},
+        }
+      },
+    },
   },
   plugins: [],
 };
