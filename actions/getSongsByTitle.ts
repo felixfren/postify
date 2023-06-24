@@ -13,13 +13,38 @@ const getSongsByTitle = async (title: string): Promise<Song[]> => {
         return allSongs;
     }
 
-    const { data, error } = await supabase.from('songs').select('*').ilike('title', `%${title}%`).order('created_at', {ascending: false});
+    // const { data, error } = await supabase.from('songs').select('*').ilike('title', `%${title}%`).order('created_at', {ascending: false});
+    try {
+        const queryByTitle = supabase.from('songs').select('*').ilike('title', `%${title}%`).order('created_at', {ascending: false});
 
-    if (error) {
-        console.log(error);
+        const queryByArtist = supabase.from('songs').select('*').ilike('artist', `%${title}%`).order('created_at', {ascending: false});
+    
+        const [titleResults, artistResults] = await Promise.all([
+            queryByTitle, queryByArtist,
+        ]);
+
+        const mergedResults = [];
+    
+        if (titleResults.data) {
+            mergedResults.push(...titleResults.data);
+        }
+
+        if (artistResults.data) {
+            mergedResults.push(...artistResults.data);
+        }
+    
+        return mergedResults;
+    } catch (error) {
+        console.error(error);
+        return []
     }
+    
 
-    return (data as any) || [];
+    // if (error) {
+    //     console.log(error);
+    // }
+
+    // return (data as any) || [];
 }
 
 export default getSongsByTitle;
