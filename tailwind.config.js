@@ -39,8 +39,12 @@ module.exports = {
                 width: '12px',
             },
             '.scrollbar::-webkit-scrollbar-thumb': {
-                backgroundColor: theme('colors.neutral.700'),
+                visibility: 'hidden',
             },
+            '.scrollbar:hover::-webkit-scrollbar-thumb': {
+                backgroundColor: theme('colors.neutral.700'),
+                visibility: 'visible',
+          },
             '.scrollbar::-webkit-scrollbar-track-piece': {
                 backgroundColor: theme('colors.transparent'),
             },
