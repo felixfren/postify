@@ -32,9 +32,9 @@ const Library: React.FC<LibraryProps> = ({
     return ( 
         <div className="flex flex-col scrollbar pb-24">
             <div className="flex items-center justify-between px-5 pt-4">
-                <div className="inline-flex items-center gap-x-2">
+                <div className="inline-flex items-center gap-x-3">
                     <TbPlaylist className="text-neutral-400" size={26} />
-                    <p className="text-neutral-400 font-medium text-md">
+                    <p className="text-neutral-400 text-xl font-bold">
                         Your Library
                     </p>
                 </div>

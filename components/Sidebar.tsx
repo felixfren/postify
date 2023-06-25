@@ -42,9 +42,9 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     return ( 
         <div className={twMerge('flex h-full', player.activeId && "h-[calc(100%-80px)")}>
-            <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[400px] p-2">
+            <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[475px] p-2">
                 <Box>
-                    <div className="flex flex-col gap-y-4 px-5 py-4">
+                    <div className="flex flex-col gap-y-4 px-5 py-4 text-xl">
                         {routes.map((item) => (
                             <SidebarItem
                                 key={item.label}
@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 </Box>
 
             </div>
-            <main className="h-full flex-1 py-2">
+            <main className="h-full flex-1 pr-2 py-2">
                 {children}
             </main>
         </div>
