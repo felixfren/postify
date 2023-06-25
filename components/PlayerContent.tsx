@@ -131,7 +131,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             </div>
 
             <div className="hidden md:flex w-full justify-end pr-2">
-                <div className="flex items-center gap-x-4 w-[150px]">
+                <div className="flex items-center gap-x-4 w-[200px]">
                     <VolumeIcon 
                         onClick={toggleMute}
                         className="cursor-pointer"

@@ -1,8 +1,11 @@
 "use client";
 
-import { useUser } from "@/hooks/useUser";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { useUser } from "@/hooks/useUser";
+import { User } from "@/types";
+
 
 const AccountContent = () => {
     const router = useRouter();
@@ -16,16 +19,30 @@ const AccountContent = () => {
         }
     },[isLoading, user, router]);
 
-    // const redirectToCustomerPortal = async () => {
-    //     setLoading(true);
-    //     try {
-    //         const {url}
-    //     }
-    // }
 
     return ( 
-        <div className="mb-7 px-6">
-            <div></div>
+        <div 
+            className="relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-y-4 gap-x-4 cursor-pointer  transition p-3"
+        >   
+            <div className="flex flex-row items-start w-full gap-y-1 px-4 py-4 text-xl bg-neutral-400/5 hover:bg-neutral-400/10 transition">
+                <p className="font-semibold truncate w-full">
+                    UUID
+                </p>
+                <p className="text-neutral-400 text-xl font-semibold w-full truncate">
+                    {user?.id}
+                </p>
+            </div>
+            <div className="flex flex-row items-start w-full gap-y-1 px-4 py-4 text-xl bg-neutral-400/5 hover:bg-neutral-400/10 transition">
+                <p className="font-semibold truncate w-full">
+                    Email
+                </p>
+                <p className="text-neutral-400 text-xl font-semibold w-full truncate">
+                    {user?.email}
+                </p>
+            </div>
+
+            
+            
         </div>
      );
 }

@@ -1,6 +1,5 @@
 import { Subscription, UserDetails } from "@/types";
-import { User } from "@supabase/auth-helpers-nextjs";
-import { useSessionContext, useUser as useSupaUser } from "@supabase/auth-helpers-react";
+import { User, useSessionContext, useUser as useSupaUser } from "@supabase/auth-helpers-react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
