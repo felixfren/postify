@@ -27,7 +27,7 @@ const MediaItem: React.FC<MediaItemProps> = ({
     return ( 
         <div onClick={handleClick} className="flex items-center gap-x-3 cursor-pointer hover:bg-neutral-800/50 w-full p-2 rounded-md"
         >
-            <div className="relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden">
+            <div className="relative rounded-md min-h-[64px] min-w-[64px] overflow-hidden">
                 <Image 
                     fill
                     src={imageUrl || '/images/liked.png'}
@@ -36,10 +36,10 @@ const MediaItem: React.FC<MediaItemProps> = ({
                 />
             </div>
             <div className="flex flex-col gap-y-1 overflow-hidden">
-                <p className="text-white animate-marquee whitespace-nowrap">
+                <p className="text-white animate-marquee whitespace-nowrap font-semibold">
                     {data.title}
                 </p>
-                <p className="text-neutral-400 text-sm animate-marquee2 whitespace-nowrap">
+                <p className="text-neutral-400 text-sm animate-marquee2 whitespace-nowrap font-semibold">
                     {data.artist}
                 </p>
             </div>
