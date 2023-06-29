@@ -19,6 +19,11 @@ export interface Song {
     genre: string;
 }
 
+export interface Artist {
+    id: string;
+    name: string;
+}
+
 export interface UserDetails {
     id: string;
     first_name: string;

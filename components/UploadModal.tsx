@@ -153,7 +153,7 @@ const uploadModal = () => {
 
                 <div>
                     <div className="pb-1">
-                        Select an Image
+                        Select a Cover Image
                     </div>
                     <Input 
                     id ="image"
