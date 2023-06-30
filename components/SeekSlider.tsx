@@ -21,7 +21,7 @@ const Slider = ({ value, onChange, onCommit, max }: SliderProps) => {
 
   return (
     <RadixSlider.Root
-      className="relative group flex items-center select-none touch-none w-24 sm:w-28 md:w-32 lg:w-36 xl:w-40 2xl:w-44"
+      className="relative group flex items-center select-none touch-none w-full"
       defaultValue={[0]}
       value={[value!]}
       onValueChange={handleChange}
@@ -29,10 +29,10 @@ const Slider = ({ value, onChange, onCommit, max }: SliderProps) => {
       max={max}
       aria-label="Seek"
     >
-      <RadixSlider.Track className="bg-gray-300 relative grow rounded-full h-1">
-        <RadixSlider.Range className="absolute bg-gray-900 rounded-full h-full group-hover:bg-orange-500 transition-colors"/>
+      <RadixSlider.Track className="bg-neutral-700 relative grow rounded-full h-1">
+        <RadixSlider.Range className="absolute bg-white rounded-full h-full group-hover:bg-emerald-500 transition-colors"/>
       </RadixSlider.Track>
-      <RadixSlider.Thumb className="hidden group-hover:block transition drop-shadow-sm focus:outline-none w-3 h-3 bg-gray-900 rounded-full"/>
+      <RadixSlider.Thumb className="hidden group-hover:block transition drop-shadow-sm focus:outline-none w-3 h-3 bg-white rounded-full"/>
     </RadixSlider.Root>
   );
 };

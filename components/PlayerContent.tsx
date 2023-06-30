@@ -157,7 +157,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             </div>
 
             <div className="hidden h-full grid-cols-2 flex-col md:flex justify-center items-center w-full max-w-[722px] gap-y-2">
-                <div className="flex items-center gap-x-6">
+                <div className="flex items-center gap-x-6 justify-center">
                     <AiFillStepBackward 
                     onClick={onPlayPrevious}
                     size={30} className="text-neutral-400 cursor-pointer hover:text-white transition" />
@@ -172,8 +172,8 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                     onClick={onPlayNext}
                     size={30} className="text-neutral-400 cursor-pointer hover:text-white transition" />
                 </div>
-                <div className="flex items-center gap-x-6">
-                    <p>
+                <div className="flex items-center gap-x-6 w-full justify-center">
+                    <p className="text-sm text-neutral-400">
                         {currTime.min}:{currTime.sec}
                     </p>
                     <SeekSlider 
@@ -186,7 +186,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                         }}
                         onCommit={play}
                     />
-                    <p>
+                    <p className="text-sm text-neutral-400">
                         {time.min}:{time.sec}
                     </p>
                 </div>
@@ -194,15 +194,18 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             </div>
 
             <div className="hidden md:flex w-full justify-end pr-2">
-                <div className="flex items-center gap-x-4 w-[200px]">
+                <div className="flex items-center gap-x-4 w-full max-w-[150px]">
                     <VolumeIcon 
                         onClick={toggleMute}
                         className="cursor-pointer"
                         size={34}
                     />
                     <Slider 
+                        max={1}
                         value={volume}
-                        onChange={(value) => setVolume(value)}
+                        onChange={(value) => {
+                            setVolume(value);
+                        }}
                     />
                 </div>
             </div>
