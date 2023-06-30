@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import useSound from "use-sound";
 import PlayingMediaItem from "./PlayingMediaItem";
 import SeekSlider from "./SeekSlider";
+import { useRouter } from "next/navigation";
 
 interface PlayerContentProps {
     song: Song;
@@ -25,6 +26,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     song,
     songUrl
 }) => {
+    const router = useRouter();
     const player = usePlayer();
     const [volume, setVolume] = useState(1);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -205,6 +207,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             <div className="hidden md:flex w-full justify-end pr-2">
                 <div className="flex items-center gap-x-4 w-full max-w-[150px]">
                     <HiQueueList 
+                        onClick={() => router.push('/songqueue')}
                         className="text-neutral-400 cursor-pointer hover:text-white transition"
                         size={34}
                     />

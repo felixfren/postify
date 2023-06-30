@@ -1,38 +1,38 @@
-import getLikedSongs from "@/actions/getLikedSongs";
-import Header from "@/components/Header";
-import Image from "next/image";
-import LikedContent from "./components/LikedContent";
+"use client";
 
-export const revalidate = 0;
+import LikeButton from "@/components/LikeButton";
+import MediaItem from "@/components/MediaItem";
+import useGetSongById from "@/hooks/useGetSongById";
+import useOnPlay from "@/hooks/useOnPlay";
+import usePlayer from "@/hooks/usePlayer";
+import useGetQueue from "@/actions/GetSongByIds";
+import { Song } from "@/types";
+import useLoadSongUrl from "@/hooks/useLoadSongUrl";
+import SongQueue from "./components/songQueue";
+import useGetSongsByIds from "@/actions/GetSongByIds";
 
-const Liked = async () => {
-    const songs = await getLikedSongs();
 
-    return ( 
-        <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto pb-16">
-            <Header>
-                <div className="flex flex-col md:flex-row items-center gap-x-5">
-                    <div className="relative h-32 w-32 lg:h-44 lg:w-44">
-                        <Image 
-                            fill
-                            src="/images/liked.png"
-                            alt="Playlist"
-                            className="object-cover"
-                        />
-                    </div>
-                    <div className="flex flex-col gap-y-2 mt-4 md:mt-0">
-                        <p className="hidden md:block font-semibold text-sm">
-                            Playlist
-                        </p>
-                        <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold">
-                            Liked Songs
-                        </h1>
-                    </div>
-                </div>
-            </Header>
-            <LikedContent songs={songs} />
+const Queue = () => {
+    const player = usePlayer();
+    const { songs } = useGetSongsByIds(player.ids);
+
+    // console.log(player);
+    // const onPlay = useOnPlay(song);
+
+    if (!songs) {
+        return (
+            <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400 ">
+                No Songs Found.
+            </div>
+        )
+    }
+
+    return (
+        <div className="flex flex-col gap-y-2 w-full px-6 pb-40">
+            test
+            <SongQueue songs={songs}/>
         </div>
-     );
+    );
 }
  
-export default Liked;
+export default Queue;
