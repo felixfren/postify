@@ -62,8 +62,9 @@ const SongQueue: React.FC<SongQueueProps> = ({
         </div>
         )}
 
-        {songsAfterCurrent.map((song) => (
+        {songsAfterCurrent.map((song,index) => (
         <div key={song.id} className="flex items-center gap-x-4 w-full">
+            <div className="text-neutral-400 font-semibold">{index + 1}</div>
             <div className="flex-1">
             <MediaItem onClick={(id: string) => onPlay(id)} data={song} />
             </div>
@@ -71,8 +72,9 @@ const SongQueue: React.FC<SongQueueProps> = ({
         </div>
         ))}
 
-        {songsBeforeCurrent.map((song) => (
+        {songsBeforeCurrent.map((song,index) => (
         <div key={song.id} className="flex items-center gap-x-4 w-full">
+            <div className="text-neutral-400 font-semibold">{index + songsAfterCurrent.length + 1}</div>
             <div className="flex-1">
             <MediaItem onClick={(id: string) => onPlay(id)} data={song} />
             </div>
