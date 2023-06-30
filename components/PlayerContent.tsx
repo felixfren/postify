@@ -3,7 +3,9 @@
 import { Song } from "@/types";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
-import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
+import { BiShuffle } from "react-icons/bi";
+import { BsRepeat, BsRepeat1 } from "react-icons/bs";
+import { HiSpeakerXMark, HiSpeakerWave, HiQueueList} from "react-icons/hi2";
 
 import MediaItem from "./MediaItem";
 import LikeButton from "./LikeButton";
@@ -158,9 +160,12 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
             <div className="hidden h-full grid-cols-2 flex-col md:flex justify-center items-center w-full max-w-[722px] gap-y-2">
                 <div className="flex items-center gap-x-6 justify-center">
+                    <BiShuffle 
+                    size={20} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+
                     <AiFillStepBackward 
                     onClick={onPlayPrevious}
-                    size={30} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                    size={25} className="text-neutral-400 cursor-pointer hover:text-white transition" />
 
                     <div 
                         onClick={handlePlay}
@@ -170,7 +175,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
                     <AiFillStepForward 
                     onClick={onPlayNext}
-                    size={30} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+                    size={25} className="text-neutral-400 cursor-pointer hover:text-white transition" />
+
+                    <BsRepeat 
+                    size={20} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+
                 </div>
                 <div className="flex items-center gap-x-6 w-full justify-center">
                     <p className="text-sm text-neutral-400">
@@ -195,9 +204,13 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
             <div className="hidden md:flex w-full justify-end pr-2">
                 <div className="flex items-center gap-x-4 w-full max-w-[150px]">
+                    <HiQueueList 
+                        className="text-neutral-400 cursor-pointer hover:text-white transition"
+                        size={34}
+                    />
                     <VolumeIcon 
                         onClick={toggleMute}
-                        className="cursor-pointer"
+                        className="text-neutral-400 cursor-pointer hover:text-white transition"
                         size={34}
                     />
                     <Slider 
