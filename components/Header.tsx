@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({
 
 
     return ( 
-        <div className={twMerge('h-fit bg-gradient-to-b from-emerald-800 p-6 sticky top-0 z-50',
+        <div className={twMerge('h-fit p-6 sticky top-0 z-50',
         className
         )}>
             <div className="w-full mb-4 flex items-center justify-between">

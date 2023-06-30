@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full pb-64 overflow-hidden overflow-y-auto scrollbar">
-      <Header>
+      <Header className="bg-gradient-to-b from-pink-900">
       </Header>
       <div className="mb-2 px-6">
           <h1 className="text-white text-3xl font-bold">

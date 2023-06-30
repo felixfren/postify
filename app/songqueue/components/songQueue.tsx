@@ -34,7 +34,7 @@ const SongQueue: React.FC<SongQueueProps> = ({
 
     if (player.ids.length === 0) {
         return (
-          <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400">
+          <div className="flex flex-col gap-y-2 w-full px-8 text-xl font-semibold text-neutral-400">
             This queue is Empty.
           </div>
         );
@@ -49,7 +49,10 @@ const SongQueue: React.FC<SongQueueProps> = ({
     );
 
     return (
-    <div className="flex flex-col gap-y-2 w-full p-6">
+    <div className="flex flex-col gap-y-2 w-full px-8">
+        <h1 className="text-neutral-400 text-xl font-semibold">
+            Currently Playing
+        </h1>
         {currentlyPlayingSong && (
         <div className="flex items-center gap-x-4 w-full">
             <div className="flex-1">
@@ -61,6 +64,10 @@ const SongQueue: React.FC<SongQueueProps> = ({
             <LikeButton songId={currentlyPlayingSong.id} />
         </div>
         )}
+
+        <h1 className="text-neutral-400 text-xl font-semibold">
+            Next in Queue
+        </h1>
 
         {songsAfterCurrent.map((song,index) => (
         <div key={song.id} className="flex items-center gap-x-4 w-full">

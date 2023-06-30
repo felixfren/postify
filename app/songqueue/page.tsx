@@ -10,6 +10,7 @@ import { Song } from "@/types";
 import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import SongQueue from "./components/songQueue";
 import useGetSongsByIds from "@/actions/GetSongByIds";
+import Header from "@/components/Header";
 
 
 const Queue = () => {
@@ -19,17 +20,16 @@ const Queue = () => {
     // console.log(player);
     // const onPlay = useOnPlay(song);
 
-    if (!songs) {
-        return (
-            <div className="flex flex-col gap-y-2 w-full px-6 text-neutral-400 ">
-                No Songs Found.
-            </div>
-        )
-    }
-
     return (
-        <div className="flex flex-col gap-y-2 w-full px-6 pb-40">
-            test
+        <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto pb-24 scrollbar">
+            <Header className="bg-neutral-900">
+                
+            </Header>
+            <div className="mb-2 flex flex-col gap-y-6 px-8">
+                <h1 className="text-white text-xl font-semibold">
+                    Queue
+                </h1>
+            </div>
             <SongQueue songs={songs}/>
         </div>
     );

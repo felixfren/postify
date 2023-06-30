@@ -9,9 +9,11 @@ const Liked = async () => {
     const songs = await getLikedSongs();
 
     return ( 
-        <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto pb-16">
-            <Header className="from-bg-neutral-900">
-                <div className="flex flex-col md:flex-row items-center gap-x-5">
+        <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto pb-16 scrollbar">
+            <Header className="bg-neutral-900">
+                
+            </Header>
+            <div className="flex flex-col md:flex-row items-center gap-x-5 px-8">
                     <div className="relative h-32 w-32 lg:h-44 lg:w-44">
                         <Image 
                             fill
@@ -29,7 +31,6 @@ const Liked = async () => {
                         </h1>
                     </div>
                 </div>
-            </Header>
             <LikedContent songs={songs} />
         </div>
      );
