@@ -26,11 +26,11 @@ const SongQueue: React.FC<SongQueueProps> = ({
     console.log(songs);
     const onPlay = useOnPlay(songs);
 
-    useEffect(() => {
-        if (!isLoading && !user) {
-            router.replace('/');
-        }
-    }, [isLoading, user, router]);
+    // useEffect(() => {
+    //     if (!isLoading && !user) {
+    //         router.replace('/');
+    //     }
+    // }, [isLoading, user, router]);
 
     if (player.ids.length === 0) {
         return (
