@@ -207,7 +207,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                 <div className="flex items-center gap-x-6 justify-center">
                     <BiShuffle 
                     onClick={isShuffleEnabled ? onRevertShuffle : onShuffle}
-                    size={20} className={`text-neutral-400 cursor-pointer hover:text-white transition ${
+                    size={20} className={`cursor-pointer hover:text-white transition ${
                         isShuffleEnabled ? "text-emerald-500" : "text-neutral-400"
                       }`}/>
 
@@ -227,7 +227,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
                     <BsRepeat 
                     onClick={isRepeatEnabled ? onDisableRepeat : onEnableRepeat}
-                    size={20} className={`text-neutral-400 cursor-pointer hover:text-white transition ${
+                    size={20} className={` cursor-pointer hover:text-white transition ${
                         isRepeatEnabled ? "text-emerald-500" : "text-neutral-400"
                       }`}/>
 
