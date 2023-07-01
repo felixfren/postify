@@ -23,9 +23,10 @@ const SongQueue: React.FC<SongQueueProps> = ({
     const currentIndex = player.ids.findIndex((id) => id === player.activeId);
     const nextSong = player.ids[currentIndex + 1];
     
-    console.log(songs);
     const onPlay = useOnPlay(songs);
 
+    console.log(player);
+    console.log(songs);
     // useEffect(() => {
     //     if (!isLoading && !user) {
     //         router.replace('/');
@@ -90,18 +91,6 @@ const SongQueue: React.FC<SongQueueProps> = ({
         ))}
     </div>
     );
-    // return ( 
-    //     <div className="flex flex-col gap-y-2 w-full p-6">
-    //         {songs.reverse().map((song) => (
-    //             <div key={song.id} className="flex items-center gap-x-4 w-full">
-    //                 <div className="flex-1">
-    //                     <MediaItem onClick={(id: string) => {}} data={song} />
-    //                 </div>
-    //                 <LikeButton songId={song.id} />
-    //             </div>
-    //         ))}
-    //     </div>
-    //  );
 }
  
 export default SongQueue;

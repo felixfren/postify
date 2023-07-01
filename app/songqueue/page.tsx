@@ -17,9 +17,6 @@ const Queue = () => {
     const player = usePlayer();
     const { songs } = useGetSongsByIds(player.ids);
 
-    // console.log(player);
-    // const onPlay = useOnPlay(song);
-
     return (
         <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto pb-24 scrollbar">
             <Header className="bg-neutral-900">

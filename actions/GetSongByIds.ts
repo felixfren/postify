@@ -26,7 +26,7 @@ const useGetSongsByIds = (ids?: string[]) => {
         return toast.error(error.message);
       }
 
-      setSongs(data as Song[]);
+      setSongs(data.reverse() as Song[]);
       setIsLoading(false);
     };
 
