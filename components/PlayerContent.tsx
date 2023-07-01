@@ -11,7 +11,7 @@ import MediaItem from "./MediaItem";
 import LikeButton from "./LikeButton";
 import Slider from "./Slider";
 import usePlayer from "@/hooks/usePlayer";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSound from "use-sound";
 import PlayingMediaItem from "./PlayingMediaItem";
 import SeekSlider from "./SeekSlider";
@@ -32,57 +32,58 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     const [isPlaying, setIsPlaying] = useState(false);
     const [isShuffleEnabled, setIsShuffleEnabled] = useState(false);
     const [isRepeatEnabled, setIsRepeatEnabled] = useState(false);
-
     
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
+
+
     const onPlayNext = () => {
         if (player.ids.length === 0) {
-            return;
+          return;
         }
-
+      
         const currentIndex = player.ids.findIndex((id) => id === player.activeId);
-
+      
         let nextSong;
-
-        if (isRepeatEnabled) {
-            nextSong = player.activeId;
+      
+        if (isRepeatEnabled === true) {
+          nextSong = player.activeId;
         } else {
-            const lastIndex = player.ids.length - 1;
-            const isLastSong = currentIndex === lastIndex;
-            nextSong = isLastSong ? player.ids[0] : player.ids[currentIndex + 1];
+          const lastIndex = player.ids.length - 1;
+          const isLastSong = currentIndex === lastIndex;
+          nextSong = isLastSong ? player.ids[0] : player.ids[currentIndex + 1];
         }
-
+      
         if (!nextSong) {
-            return player.setId(player.ids[0]);
+          return player.setId(player.ids[0]);
         }
-
+      
         player.setId(nextSong);
-    }
-
-    const onPlayPrevious = () => {
+    };
+      
+      const onPlayPrevious = () => {
         if (player.ids.length === 0) {
-            return;
+          return;
         }
-
+      
         const currentIndex = player.ids.findIndex((id) => id === player.activeId);
         let previousSong;
-
-        if (isRepeatEnabled) {
-            previousSong = player.activeId;
+      
+        if (isRepeatEnabled === true) {
+          previousSong = player.activeId;
         } else {
-            const firstIndex = 0;
-            const isFirstSong = currentIndex === firstIndex;
-            previousSong = isFirstSong ? player.ids[player.ids.length - 1] : player.ids[currentIndex - 1];
+          const firstIndex = 0;
+          const isFirstSong = currentIndex === firstIndex;
+          previousSong = isFirstSong ? player.ids[player.ids.length - 1] : player.ids[currentIndex - 1];
         }
-
+      
         if (!previousSong) {
-            return player.setId(player.ids[player.ids.length - 1]);
+          return player.setId(player.ids[player.ids.length - 1]);
         }
-
+      
         player.setId(previousSong);  
-    };
+      };
 
     const onShuffle = () => {
         setIsShuffleEnabled(true);
@@ -95,6 +96,19 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         
     }
 
+
+    const [play, { pause, duration, sound }] = useSound(
+        songUrl,
+        {
+            volume: volume,
+            onplay: () =>setIsPlaying(true),
+            onend: () => onPlayNext(),
+            onpause: () => setIsPlaying(false),
+            format: ['mp3']
+        }
+    );
+
+
     const onEnableRepeat = () => {
         setIsRepeatEnabled(true);
     };
@@ -103,23 +117,13 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         setIsRepeatEnabled(false);
     }
 
-    const [play, { pause, duration, sound }] = useSound(
-        songUrl,
-        {
-            volume: volume,
-            onplay: () => setIsPlaying(true),
-            onend: () => {
-                setIsPlaying(false);
-                if (isRepeatEnabled) {
-                    play();
-                } else {
-                    onPlayNext();
-                }
-            },
-            onpause: () => setIsPlaying(false),
-            format: ['mp3']
-        }
-    );
+    useEffect(() => {
+        console.log("isRepeatEnabled:", isRepeatEnabled);
+      }, [isRepeatEnabled]);
+
+    const capek = () => {
+        console.log("isRepeatEnabled:", isRepeatEnabled);
+    }
 
     const [time, setTime] = useState({
         min: "00", sec: "00"
@@ -130,6 +134,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     });
 
     const [seconds, setSeconds] = useState(0);
+
 
     //useEffect for duration calculations
     useEffect(() => {
@@ -167,7 +172,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     useEffect(() => {
         sound?.play();
         return () => {
-            sound?.unload();
+            sound?.unload();   
         }
     }, [sound]);
 
