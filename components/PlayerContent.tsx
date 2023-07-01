@@ -49,7 +49,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         if (isRepeatEnabled) {
             nextSong = player.activeId;
         } else {
-            nextSong = player.ids[currentIndex + 1]
+            const lastIndex = player.ids.length - 1;
+            const isLastSong = currentIndex === lastIndex;
+            nextSong = isLastSong ? player.ids[0] : player.ids[currentIndex + 1];
         }
 
         if (!nextSong) {
@@ -70,8 +72,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         if (isRepeatEnabled) {
             previousSong = player.activeId;
         } else {
-            previousSong = player.ids[currentIndex -1];
+            const firstIndex = 0;
+            const isFirstSong = currentIndex === firstIndex;
+            previousSong = isFirstSong ? player.ids[player.ids.length - 1] : player.ids[currentIndex - 1];
         }
+
         if (!previousSong) {
             return player.setId(player.ids[player.ids.length - 1]);
         }
