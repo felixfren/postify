@@ -24,10 +24,6 @@ const AccountContent = ({ songs }: AccountContentProps) => {
 
     const [loading, setLoading] = useState(false);
 
-    const onClick = () => {
-        return confirmModal.onOpen();
-    };
-
     useEffect(() => {
         if (!isLoading && !user) {
             router.replace('/');
