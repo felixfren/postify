@@ -11,6 +11,7 @@ import useLoadSongUrl from "@/hooks/useLoadSongUrl";
 import SongQueue from "./components/songQueue";
 import useGetSongsByIds from "@/actions/GetSongByIds";
 import Header from "@/components/Header";
+import { useState } from "react";
 
 
 const Queue = () => {

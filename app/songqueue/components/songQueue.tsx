@@ -19,19 +19,15 @@ const SongQueue: React.FC<SongQueueProps> = ({
     const router = useRouter();
     const { isLoading, user } = useUser();
     const player = usePlayer();
-
-    const currentIndex = player.ids.findIndex((id) => id === player.activeId);
-    const nextSong = player.ids[currentIndex + 1];
     
     const onPlay = useOnPlay(songs);
 
-    console.log(player);
-    console.log(songs);
-    // useEffect(() => {
-    //     if (!isLoading && !user) {
-    //         router.replace('/');
-    //     }
-    // }, [isLoading, user, router]);
+    // console.log(player);
+    
+    useEffect(() => {
+        const ids = player.ids;
+    }, [player.ids])
+
 
     if (player.ids.length === 0) {
         return (
@@ -41,13 +37,19 @@ const SongQueue: React.FC<SongQueueProps> = ({
         );
       }
 
+    const currentIndex = player.ids.findIndex((id) => id === player.activeId);
     const currentlyPlayingSong = songs.find((song) => song.id === player.activeId);
-    const songsBeforeCurrent = songs.filter(
-    (song, index) => index < currentIndex
-    );
-    const songsAfterCurrent = songs.filter(
-    (song, index) => index > currentIndex
-    );
+    
+    
+    const songsBeforeCurrent = player.ids
+    .slice(0, currentIndex)
+    .filter(id => songs.some(song => song.id === id))
+    .map(id => songs.find(song => song.id === id)) as Song[];
+  
+  const songsAfterCurrent = player.ids
+    .slice(currentIndex + 1)
+    .filter(id => songs.some(song => song.id === id))
+    .map(id => songs.find(song => song.id === id)) as Song[];
 
     return (
     <div className="flex flex-col gap-y-2 w-full px-8">

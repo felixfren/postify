@@ -30,7 +30,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     const player = usePlayer();
     const [volume, setVolume] = useState(1);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isShuffleEnabled, setIsShuffleEnabled] = useState(false);
+    const [isRepeatEnabled, setIsRepeatEnabled] = useState(false);
 
+    
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
@@ -40,7 +43,14 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         }
 
         const currentIndex = player.ids.findIndex((id) => id === player.activeId);
-        const nextSong = player.ids[currentIndex + 1];
+
+        let nextSong;
+
+        if (isRepeatEnabled) {
+            nextSong = player.activeId;
+        } else {
+            nextSong = player.ids[currentIndex + 1]
+        }
 
         if (!nextSong) {
             return player.setId(player.ids[0]);
@@ -55,14 +65,38 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         }
 
         const currentIndex = player.ids.findIndex((id) => id === player.activeId);
-        const previousSong = player.ids[currentIndex - 1];
+        let previousSong;
 
+        if (isRepeatEnabled) {
+            previousSong = player.activeId;
+        } else {
+            previousSong = player.ids[currentIndex -1];
+        }
         if (!previousSong) {
             return player.setId(player.ids[player.ids.length - 1]);
         }
 
         player.setId(previousSong);  
     };
+
+    const onShuffle = () => {
+        setIsShuffleEnabled(true);
+        player.shuffle();
+    };
+
+    const onRevertShuffle = () => {
+        setIsShuffleEnabled(false);
+        player.revertShuffle();
+        
+    }
+
+    const onEnableRepeat = () => {
+        setIsRepeatEnabled(true);
+    };
+
+    const onDisableRepeat = () => {
+        setIsRepeatEnabled(false);
+    }
 
     const [play, { pause, duration, sound }] = useSound(
         songUrl,
@@ -71,7 +105,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             onplay: () => setIsPlaying(true),
             onend: () => {
                 setIsPlaying(false);
-                onPlayNext();
+                if (isRepeatEnabled) {
+                    play();
+                } else {
+                    onPlayNext();
+                }
             },
             onpause: () => setIsPlaying(false),
             format: ['mp3']
@@ -163,7 +201,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
             <div className="hidden h-full grid-cols-2 flex-col md:flex justify-center items-center w-full max-w-[722px] gap-y-2">
                 <div className="flex items-center gap-x-6 justify-center">
                     <BiShuffle 
-                    size={20} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                    onClick={isShuffleEnabled ? onRevertShuffle : onShuffle}
+                    size={20} className={`text-neutral-400 cursor-pointer hover:text-white transition ${
+                        isShuffleEnabled ? "text-emerald-500" : "text-neutral-400"
+                      }`}/>
 
                     <AiFillStepBackward 
                     onClick={onPlayPrevious}
@@ -180,7 +221,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                     size={25} className="text-neutral-400 cursor-pointer hover:text-white transition" />
 
                     <BsRepeat 
-                    size={20} className="text-neutral-400 cursor-pointer hover:text-white transition"/>
+                    onClick={isRepeatEnabled ? onDisableRepeat : onEnableRepeat}
+                    size={20} className={`text-neutral-400 cursor-pointer hover:text-white transition ${
+                        isRepeatEnabled ? "text-emerald-500" : "text-neutral-400"
+                      }`}/>
 
                 </div>
                 <div className="flex items-center gap-x-6 w-full justify-center">
