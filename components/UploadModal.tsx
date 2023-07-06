@@ -90,7 +90,7 @@ const uploadModal = () => {
                 image_path: imageData.path,
                 song_path: songData.path,
             });
-            
+ 
             if (supabaseError) {
                 setIsLoading(false);
                 return toast.error(supabaseError.message);

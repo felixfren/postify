@@ -29,13 +29,14 @@ const Library: React.FC<LibraryProps> = ({
 
         return uploadModal.onOpen();
     };
+
     return ( 
         <div className="flex flex-col scrollbar pb-24">
             <div className="flex items-center justify-between px-5 pt-4">
                 <div className="inline-flex items-center gap-x-3">
                     <VscLibrary className="text-neutral-400" size={30} />
                     <p className="text-neutral-400 text-xl font-bold">
-                        Your Library
+                        Your Uploads
                     </p>
                 </div>
                 <AiOutlinePlus 
